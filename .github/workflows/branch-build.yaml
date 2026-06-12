@@ -21,7 +21,9 @@ jobs:
         dotnet-version: 10.0.x
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: |
+        dotnet restore fsuipc-test-client
+        dotnet restore fsuipc-test-client.Tests
     
     - name: Check formatting
       run: |
