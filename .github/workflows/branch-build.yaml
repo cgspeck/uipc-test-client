@@ -1,0 +1,43 @@
+name: Branch Build
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+
+jobs:
+  build:
+    # https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v5
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Restore dependencies
+      run: |
+        dotnet restore fsuipc-test-client
+        dotnet restore fsuipc-test-client.Tests
+    
+    - name: Check formatting
+      run: |
+        dotnet format fsuipc-test-client  --verify-no-changes --no-restore
+        dotnet format fsuipc-test-client.Tests --verify-no-changes --no-restore
+
+    - name: Test
+      run: dotnet test fsuipc-test-client.Tests --verbosity normal --no-restore
+
+    - name: Release build
+      run: dotnet build fsuipc-test-client -c Release --no-restore
+
+    - uses: actions/upload-artifact@v7
+      with:
+        name: fsuipc-test-client
+        path: fsuipc-test-client\bin\Release\net10.0-windows
+
