@@ -1,4 +1,4 @@
-# FSUIPC Test Client
+# UIPC Test Client
 
 .NET console application (Windows only, requires .NET 10 SDK + FSUIPCClientDLL) that connects to any FSUIPC-compatible host and reads offsets in real time or batch mode.
 
