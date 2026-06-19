@@ -60,6 +60,4 @@ dotnet run --project fsuipc-test-client -- slc-offsets.csv
 
 GNU LGPLv3.
 
-FSUIPC is a trademark of Pete Dowson. This plugin is an independent implementation and is not affiliated with or endorsed by the FSUIPC project.
-
-X-Plane SDK License [viewable here](./vendor/x-plane-sdk/4.3.0/SDK/license.txt).
+FSUIPC is a trademark of Pete Dowson.
